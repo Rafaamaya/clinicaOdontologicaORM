@@ -3,7 +3,7 @@ package com.example.projectClinica.ClinicaOdontologica.entities;
 import javax.persistence.*;
 
 @Entity
-
+@Table(name = "Odontologos")
 public class Odontologo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
