@@ -3,19 +3,21 @@ package com.example.projectClinica.ClinicaOdontologica.entities;
 import javax.persistence.*;
 import java.util.Date;
 @Entity
+@Table(name = "Pacientes")
 public class Paciente {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "paciente_sequence", sequenceName = "paciente_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paciente_sequence")
     @Column(name = "id", nullable = false)
     private Long id;
     private String apellido;
     private String nombre;
     private String email;
     private String dni;
-    @OneToOne
-    @JoinColumn(name = "domicilio_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "domicilio_id",referencedColumnName = "id")
     private Domicilio domicilio;
 
 
