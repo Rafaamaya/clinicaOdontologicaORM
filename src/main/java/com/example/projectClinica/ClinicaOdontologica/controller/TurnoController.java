@@ -1,5 +1,6 @@
 package com.example.projectClinica.ClinicaOdontologica.controller;
 
+
 import com.example.projectClinica.ClinicaOdontologica.entities.Odontologo;
 import com.example.projectClinica.ClinicaOdontologica.entities.Paciente;
 import com.example.projectClinica.ClinicaOdontologica.entities.Turno;
@@ -21,12 +22,12 @@ public class TurnoController {
     private TurnoService turnoService;
 
     @PostMapping("/guardar")
-    public ResponseEntity<Turno> getGuardarOdontologo(@RequestBody Turno turno){
-        ResponseEntity<Turno> response = null;
+    public ResponseEntity<String> getGuardarOdontologo(@RequestBody Turno turno){
+        ResponseEntity<String> response = null;
         if (turnoService.guardarTuro(turno) != null){
-            response = ResponseEntity.ok(turno);
+            response = ResponseEntity.ok("Se guardo un turno de forma correcta");
         }else {
-            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(turno);
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Su turno no pido ser guardado");
         }
         return response;
     }

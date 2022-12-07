@@ -1,6 +1,8 @@
 package com.example.projectClinica.ClinicaOdontologica.controller;
 
+import com.example.projectClinica.ClinicaOdontologica.entities.DTO.OdontologoDTO;
 import com.example.projectClinica.ClinicaOdontologica.entities.Odontologo;
+import com.example.projectClinica.ClinicaOdontologica.entities.Paciente;
 import com.example.projectClinica.ClinicaOdontologica.service.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +26,15 @@ public class OdontologoController {
     }
 
     @GetMapping("/buscar/{id}")
-    public Optional<Odontologo> getBuscarOdontologo(@PathVariable Long id){
-        return odontologoService.buscarOdontologo(id);
+    public ResponseEntity<?> getBuscarOdontologo(@PathVariable Long id){
+        ResponseEntity response = null;
+        OdontologoDTO odontologoDTO = odontologoService.buscarOdontologo(id);
+        if(odontologoDTO == null){
+            response = new ResponseEntity("No existe odontologo con ese id" , HttpStatus.NOT_FOUND);
+        }else{
+            response = new ResponseEntity(odontologoDTO ,HttpStatus.OK);
+        }
+        return response;
     }
 
     @PostMapping("/guardar")

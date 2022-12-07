@@ -22,7 +22,7 @@ public class Pacienteontroller {
 
 
     @PostMapping("/guardar")
-    public ResponseEntity<Paciente>  getGuardarOdontologo(@RequestBody Paciente paciente){
+    public ResponseEntity<Paciente>  getGuardarPaciente(@RequestBody Paciente paciente){
         ResponseEntity<Paciente> response = null;
         if (pacienteService.guardarPaciente(paciente) != null){
             response = ResponseEntity.ok(paciente);
@@ -38,11 +38,11 @@ public class Pacienteontroller {
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<?> getBuscarOdontologo(@PathVariable Long id){
+    public ResponseEntity<?> getBuscarPaciente(@PathVariable Long id){
         ResponseEntity response = null;
         Optional<Paciente> paciente = pacienteService.buscarPaciente(id);
         if(paciente == null){
-            response = new ResponseEntity("No existe odontologo con ese id" , HttpStatus.NOT_FOUND);
+            response = new ResponseEntity("No existe paciente con ese id" , HttpStatus.NOT_FOUND);
         }else{
             response = new ResponseEntity(paciente ,HttpStatus.OK);
         }
@@ -50,7 +50,7 @@ public class Pacienteontroller {
     }
 
     @DeleteMapping("/eliminar")
-    public ResponseEntity<String> getEliminarOdontologo(@RequestParam Long id){
+    public ResponseEntity<String> getEliminarPaciente(@RequestParam Long id){
         ResponseEntity response = null;
         if(pacienteService.eliminarOdontologo(id) == false){
             response = new ResponseEntity("No existe odontologo con ese id" , HttpStatus.NOT_FOUND);
@@ -61,7 +61,7 @@ public class Pacienteontroller {
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<String> actualizarødontologo(@RequestBody Paciente paciente){
+    public ResponseEntity<String> actualizarPaciente(@RequestBody Paciente paciente){
         ResponseEntity response = null;
         if(pacienteService.actualizar(paciente) == false){
             response = new ResponseEntity("No existe el registro a modificar", HttpStatus.NOT_FOUND);
