@@ -32,8 +32,7 @@ public class Paciente {
 
 
 
-    public Paciente(Long id, String apellido, String nombre, String email, String dni, Domicilio domicilio) {
-        this.id = id;
+    public Paciente( String apellido, String nombre, String email, String dni, Domicilio domicilio) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.email = email;

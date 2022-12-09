@@ -23,6 +23,10 @@ public class Turno {
     public Turno() {
     }
 
+    public Turno(Odontologo odontologo, Paciente paciente) {
+        this.odontologo = odontologo;
+        this.paciente = paciente;
+    }
 
     public Long getId() {
         return id;
