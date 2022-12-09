@@ -1,9 +1,12 @@
 package com.example.projectClinica.ClinicaOdontologica.service;
 
 
+import com.example.projectClinica.ClinicaOdontologica.entities.DTO.OdontologoDTO;
+import com.example.projectClinica.ClinicaOdontologica.entities.DTO.PacienteDTO;
 import com.example.projectClinica.ClinicaOdontologica.entities.Odontologo;
 import com.example.projectClinica.ClinicaOdontologica.entities.Paciente;
 import com.example.projectClinica.ClinicaOdontologica.repository.PacienteRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,8 @@ public class PacienteService implements IPacienteService {
 
     @Autowired
     PacienteRepository pacienteRepository;
+    @Autowired
+    ObjectMapper mapper;
 
     @Override
     public List<Paciente> listarPaciente() {
@@ -30,12 +35,17 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public Optional<Paciente> buscarPaciente(Long id) {
+    public PacienteDTO buscarPaciente(Long id) {
         Optional<Paciente> paciente = pacienteRepository.findById(id);
+        PacienteDTO pacienteDTO = null;
         if (paciente.isPresent()){
-            return paciente;
+            pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
+            pacienteDTO.setFullName(String.format("%s %s",paciente.get().getNombre(),paciente.get().getApellido()));
+            pacienteDTO.setCalleNumero(String.format("%s %s",paciente.get().getDomicilio().getCalle(),paciente.get().getDomicilio().getNumero()));
+            pacienteDTO.setLocalidad(paciente.get().getDomicilio().getLocalidad());
+            pacienteDTO.setProvincia(paciente.get().getDomicilio().getProvincia());
         }
-        return null;
+        return pacienteDTO;
     }
 
     @Override

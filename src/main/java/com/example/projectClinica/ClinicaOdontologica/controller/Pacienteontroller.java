@@ -2,6 +2,7 @@ package com.example.projectClinica.ClinicaOdontologica.controller;
 
 
 
+import com.example.projectClinica.ClinicaOdontologica.entities.DTO.PacienteDTO;
 import com.example.projectClinica.ClinicaOdontologica.entities.Odontologo;
 import com.example.projectClinica.ClinicaOdontologica.entities.Paciente;
 import com.example.projectClinica.ClinicaOdontologica.service.PacienteService;
@@ -40,7 +41,7 @@ public class Pacienteontroller {
     @GetMapping("/buscar/{id}")
     public ResponseEntity<?> getBuscarPaciente(@PathVariable Long id){
         ResponseEntity response = null;
-        Optional<Paciente> paciente = pacienteService.buscarPaciente(id);
+        PacienteDTO paciente = pacienteService.buscarPaciente(id);
         if(paciente == null){
             response = new ResponseEntity("No existe paciente con ese id" , HttpStatus.NOT_FOUND);
         }else{

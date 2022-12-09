@@ -1,6 +1,7 @@
 package com.example.projectClinica.ClinicaOdontologica.controller;
 
 
+import com.example.projectClinica.ClinicaOdontologica.entities.DTO.TurnoDTO;
 import com.example.projectClinica.ClinicaOdontologica.entities.Odontologo;
 import com.example.projectClinica.ClinicaOdontologica.entities.Paciente;
 import com.example.projectClinica.ClinicaOdontologica.entities.Turno;
@@ -49,7 +50,7 @@ public class TurnoController {
     }
 
     @GetMapping("/buscar/{id}")
-    public Optional<Turno> getBuscarOdontologo(@PathVariable Long id){
+    public TurnoDTO getBuscarOdontologo(@PathVariable Long id){
         return turnoService.buscarTurno(id);
     }
 }
