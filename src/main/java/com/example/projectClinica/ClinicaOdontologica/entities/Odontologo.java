@@ -81,10 +81,12 @@ public class Odontologo {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "apellido = " + apellido + ", " +
-                "nombre = " + nombre + ", " +
-                "matricula = " + matricula + ")";
+        return "Odontologo{" +
+                "id=" + id +
+                ", apellido='" + apellido + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", matricula='" + matricula + '\'' +
+                ", turnos=" + turnos +
+                '}';
     }
 }

@@ -7,6 +7,7 @@ import com.example.projectClinica.ClinicaOdontologica.entities.Paciente;
 import com.example.projectClinica.ClinicaOdontologica.entities.Turno;
 import com.example.projectClinica.ClinicaOdontologica.service.OdontologoService;
 import com.example.projectClinica.ClinicaOdontologica.service.TurnoService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("turno")
 public class TurnoController {
+    private static final Logger logger = Logger.getLogger(Pacienteontroller.class);
+
 
     @Autowired
     private TurnoService turnoService;
@@ -26,9 +29,11 @@ public class TurnoController {
     public ResponseEntity<String> getGuardarOdontologo(@RequestBody Turno turno){
         ResponseEntity<String> response = null;
         if (turnoService.guardarTuro(turno) != null){
+            logger.info("Se guardo un turno de forma correcta");
             response = ResponseEntity.ok("Se guardo un turno de forma correcta");
         }else {
-            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Su turno no pido ser guardado");
+            logger.info("No se pudo guardar de forma correcta " + turno);
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Su turno no puede ser guardado");
         }
         return response;
     }

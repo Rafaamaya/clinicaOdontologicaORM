@@ -20,6 +20,10 @@ public class TurnoService implements ITurnoService {
     @Autowired
     TurnoRepository turnoRepository;
     @Autowired
+    private OdontologoService odontologoService;
+    @Autowired
+    private PacienteService pacienteService;
+    @Autowired
     ObjectMapper mapper;
 
 
@@ -30,8 +34,12 @@ public class TurnoService implements ITurnoService {
 
     @Override
     public Turno guardarTuro(Turno turno) {
-        turnoRepository.save(turno);
-        return turno;
+        if ((odontologoService.buscarOdontologo(turno.getOdontologo().getId()) != null) && pacienteService.buscarPaciente(turno.getPaciente().getId()) != null) {
+            turnoRepository.save(turno);
+            return turno;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -56,7 +64,7 @@ public class TurnoService implements ITurnoService {
 
             pacienteDTO = mapper.convertValue(turno.get().getPaciente(), PacienteDTO.class);
             pacienteDTO.setFullName(String.format("%s %s", turno.get().getPaciente().getNombre(), turno.get().getPaciente().getApellido()));
-            pacienteDTO.setCalleNumero(String.format("%s %s",turno.get().getPaciente().getDomicilio().getCalle(),turno.get().getPaciente().getDomicilio().getNumero()));
+            pacienteDTO.setCalleNumero(String.format("%s %s", turno.get().getPaciente().getDomicilio().getCalle(), turno.get().getPaciente().getDomicilio().getNumero()));
             pacienteDTO.setLocalidad(turno.get().getPaciente().getDomicilio().getLocalidad());
             pacienteDTO.setProvincia(turno.get().getPaciente().getDomicilio().getProvincia());
 
