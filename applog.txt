@@ -4,3 +4,6 @@ No se pudo guardar de forma correctaTurno{id=null, odontologo=Odontologo{id=1, a
 No se pudo guardar de forma correctaTurno{, odontologo=Odontologo{id=1, apellido='null', nombre='null', matricula='null', turnos=[]}, paciente=Paciente{id=10, apellido='null', nombre='null', email='null', dni='null', domicilio=null}}
 Se guardo un turno de forma correcta
 No se pudo guardar de forma correcta Turno{ odontologo=Odontologo{id=1, apellido='null', nombre='null', matricula='null', turnos=[]}, paciente=Paciente{id=10, apellido='null', nombre='null', email='null', dni='null', domicilio=null}}
+INFO    2022-12-11 21:06:06,393 [http-nio-8080-exec-8] com.example.projectClinica.ClinicaOdontologica.controller.Pacienteontroller  - No se pudo guardar de forma correcta Turno{ odontologo=Odontologo{id=1, apellido='null', nombre='null', matricula='null', turnos=[]}, paciente=Paciente{id=10, apellido='null', nombre='null', email='null', dni='null', domicilio=null}}
+INFO    2022-12-11 21:06:50,348 [http-nio-8080-exec-10] com.example.projectClinica.ClinicaOdontologica.controller.Pacienteontroller  - Se guardo un turno de forma correcta
+INFO    2022-12-12 18:46:10,021 [http-nio-8080-exec-6] com.example.projectClinica.ClinicaOdontologica.controller.Pacienteontroller  - Se guardo un turno de forma correcta
